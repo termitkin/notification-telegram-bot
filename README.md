@@ -1,4 +1,4 @@
-# notification telegram bot
+# Notification telegram bot
 
 В корне проекта нужно создать файл `.env` с двумя переменныи окружения:
 
