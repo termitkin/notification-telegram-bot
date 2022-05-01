@@ -1,5 +1,5 @@
-import express, { Request, Response } from 'express';
-import fetch from 'node-fetch';
+import type { Request, Response } from 'express';
+import express from 'express';
 import type {
   ApiRequestStatus,
   ApiResponse,
@@ -30,13 +30,14 @@ const buildQuery = (text: Message): UrlQuery => {
   } as MessageToTelegram).toString();
 };
 
-const sendMessage = (text: Message): Promise<boolean> => {
+const sendMessage = (text: Message): Promise<boolean | void> => {
   const urlQuery: UrlQuery = buildQuery(text);
   const url: Url = buildUrl(urlQuery);
 
   return fetch(url)
     .then((res) => res.json())
-    .then((data: ApiResponse): ApiRequestStatus => data.ok);
+    .then((data: ApiResponse): ApiRequestStatus => data.ok)
+    .catch((err) => console.error(err));
 };
 
 app.all('*', async (req: Request, res: Response) => {
