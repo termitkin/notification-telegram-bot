@@ -18,6 +18,11 @@ const TELEGRAM_API_URL: TELEGRAM_API_URL_TYPE = 'https://api.telegram.org/bot';
 const TELEGRAM_BOT_TOKEN: TELEGRAM_BOT_TOKEN_TYPE = process.env.TELEGRAM_BOT_TOKEN;
 const TELEGRAM_BOT_CHAT_ID: TELEGRAM_BOT_CHAT_ID_TYPE = process.env.TELEGRAM_BOT_CHAT_ID;
 
+if (!(TELEGRAM_BOT_TOKEN && TELEGRAM_BOT_CHAT_ID)) {
+  console.log('Please set TELEGRAM_BOT_TOKEN and TELEGRAM_BOT_CHAT_ID environment variables');
+  process.exit(1);
+}
+
 const app = express();
 app.use(express.json());
 
