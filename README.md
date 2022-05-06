@@ -2,6 +2,8 @@
 
 The message must be sent in the body in the ```text``` field or in the header ```x-text```
 
+[Docker image](https://hub.docker.com/r/termitkin/notification-telegram-bot)
+
 ### Example of docker-compose.yml
 
 ```yml
