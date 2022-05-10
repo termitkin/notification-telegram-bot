@@ -1,6 +1,6 @@
 # Notification telegram bot
 
-The message must be sent in the body in the ```text``` field or in the header ```x-text```
+The message must be sent as text in the body or in the header field ```x-text```
 
 [Docker image](https://hub.docker.com/r/termitkin/notification-telegram-bot)
 
