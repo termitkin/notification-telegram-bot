@@ -24,7 +24,7 @@ if (!(TELEGRAM_BOT_TOKEN && TELEGRAM_BOT_CHAT_ID)) {
 }
 
 const app = express();
-app.use(express.json());
+app.use(express.text());
 
 const buildUrl = (query: UrlQuery): Url => `${TELEGRAM_API_URL}${TELEGRAM_BOT_TOKEN}/sendMessage?${query}`;
 
@@ -46,12 +46,13 @@ const sendMessage = (text: Message): Promise<boolean | void> => {
 };
 
 app.all('*', async (req: Request, res: Response) => {
-  const text: string | undefined = req.body?.text || req.header('x-text');
+  const text: string | undefined = req.body || req.header('x-text');
 
   if (text && (await sendMessage(text))) {
     return res.status(200).send('ok');
   }
 
+  console.log('Failed to send message: ', text);
   return res.status(500).send('not ok');
 });
 
