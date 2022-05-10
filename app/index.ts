@@ -46,7 +46,7 @@ const sendMessage = (text: Message): Promise<boolean | void> => {
 };
 
 app.all('*', async (req: Request, res: Response) => {
-  const text: string | undefined = req.body || req.header('x-text');
+  const text: string | undefined = req.header('x-text') || req.body;
 
   if (text && (await sendMessage(text))) {
     return res.status(200).send('ok');
