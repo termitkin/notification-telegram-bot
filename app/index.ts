@@ -48,8 +48,10 @@ const sendMessage = (text: Message): Promise<boolean | void> => {
 app.all('*', async (req: Request, res: Response) => {
   const text: string | undefined = req.header('x-text') || req.body;
 
-  if (text && (await sendMessage(text))) {
+  if (text && typeof text === 'string' && (await sendMessage(text))) {
     return res.status(200).send('ok');
+  } else {
+    console.log(req.body, req.query, req.params, req.headers, req.method, req.originalUrl, req.url);
   }
 
   console.log('Failed to send message: ', text);
