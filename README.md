@@ -53,5 +53,5 @@ docker build -t termitkin/notification-telegram-bot:latest .
 ### Run docker container
 
 ```bash
-docker pull termitkin/termitkin/notification-telegram-bot:latest && docker-compose up -d
+docker pull termitkin/notification-telegram-bot:latest && docker-compose up -d
 ```
